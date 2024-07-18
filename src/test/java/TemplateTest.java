@@ -25,4 +25,13 @@ public class TemplateTest {
         template.set("name", "Frank");
         assertThat(template.evaluate()).isEqualTo("Hi, Frank");
     }
+
+    @Test
+    void multipleVariables(){
+        Template template = new Template("${one}, ${two}, ${three}");
+        template.set("one", "1");
+        template.set("two", "2");
+        template.set("three", "3");
+        assertThat(template.evaluate()).isEqualTo("1, 2, 3");
+    }
 }
