@@ -11,4 +11,11 @@ public class TemplateTest {
         template.set("name", "Reader");
         assertThat(template.evaluate()).isEqualTo("Hello, Reader");
     }
+
+    @Test
+    void evaluateTemplateWithDifferentVariable(){
+        Template template = new Template("Hello, ${name}");
+        template.set("name", "Frank");
+        assertThat(template.evaluate()).isEqualTo("Hello, Frank");
+    }
 }
