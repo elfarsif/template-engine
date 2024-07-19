@@ -1,8 +1,10 @@
+import org.frank.MissingValueException;
 import org.frank.Template;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class TemplateTest {
@@ -25,6 +27,16 @@ public class TemplateTest {
     public void itShouldIgnoreUnknownVariables() throws Exception {
         template.set("doesnotexist", "Hi");
         assertTemplateEvaluatesTo("1, 2, 3");
+    }
+
+    @Test
+    public void itShouldRaiseExceptionOnMissingValue(){
+        try {
+            new Template("${foo}").evaluate();
+            fail("evaluate() should throw an exception if "
+                    + "a variable was left without a value!");
+        } catch (MissingValueException expected) {
+        }
     }
 
     private void assertTemplateEvaluatesTo(String expected){
