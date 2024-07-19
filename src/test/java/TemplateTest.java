@@ -34,4 +34,12 @@ public class TemplateTest {
         template.set("three", "3");
         assertThat(template.evaluate()).isEqualTo("1, 2, 3");
     }
+
+    @Test
+    public void unknownVariablesAreIgnored() throws Exception {
+        Template template = new Template("Hello, ${name}");
+        template.set("name", "Reader");
+        template.set("doesnotexist", "Hi");
+        assertThat(template.evaluate()).isEqualTo("Hello, Reader");
+    }
 }
