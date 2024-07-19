@@ -1,18 +1,28 @@
 package org.frank;
 
-public class Template {
-    private String templateString;
-    private String value;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
-    public Template(String templateString) {
-        this.templateString = templateString;
+public class Template {
+    private String templateText;
+    Map<String,String> variables;
+
+    public Template(String templateText) {
+        this.templateText = templateText;
+        this.variables = new HashMap<>();
     }
 
     public void set(String variable, String value) {
-        this.value = value;
+        this.variables.put(variable,value);
     }
 
     public String evaluate() {
-        return templateString.replaceAll("\\$\\{name\\}", value);
+        String result = templateText;
+        for (Entry<String, String> entry : variables.entrySet()) {
+            String regex = "\\$\\{" + entry.getKey() + "\\}";
+            result = result.replaceAll(regex, entry.getValue());
+        }
+        return result;
     }
 }
