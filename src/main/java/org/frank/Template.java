@@ -34,7 +34,7 @@ public class Template {
 
     private void checkForMissingValues(String result){
         if (result.matches(".*\\$\\{.+\\}.*")) {
-            throw new MissingValueException();
+            throw new MissingValueException("No value for ${foo}");
         }
     }
 
