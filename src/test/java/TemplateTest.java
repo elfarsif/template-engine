@@ -11,7 +11,7 @@ public class TemplateTest {
     Template template;
 
     @BeforeEach
-    void givenTemplateWithMultipleVaribles(){
+    void givenTemplateWithMultipleVaribles() {
         template = new Template("${one}, ${two}, ${three}");
         template.set("one", "1");
         template.set("two", "2");
@@ -19,7 +19,7 @@ public class TemplateTest {
     }
 
     @Test
-    void itShouldReplaceMultipleVariables(){
+    void itShouldReplaceMultipleVariables() {
         assertTemplateEvaluatesTo("1, 2, 3");
     }
 
@@ -30,7 +30,7 @@ public class TemplateTest {
     }
 
     @Test
-    public void itShouldRaiseExceptionOnMissingValue(){
+    public void itShouldRaiseExceptionOnMissingValue() {
         try {
             new Template("${foo}").evaluate();
             fail("evaluate() should throw an exception if "
@@ -40,7 +40,15 @@ public class TemplateTest {
         }
     }
 
-    private void assertTemplateEvaluatesTo(String expected){
+    private void assertTemplateEvaluatesTo(String expected) {
         assertThat(template.evaluate()).isEqualTo(expected);
+    }
+
+    @Test
+    public void variablesGetProcessedJustOnce() throws Exception {
+        template.set("one", "${one}");
+        template.set("two", "${three}");
+        template.set("three", "${two}");
+        assertTemplateEvaluatesTo("${one}, ${three}, ${two}");
     }
 }
