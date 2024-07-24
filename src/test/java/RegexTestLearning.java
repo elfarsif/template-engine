@@ -10,9 +10,23 @@ public class RegexTestLearning {
     @Test
     public void testHowGroupCountWorks() throws Exception {
         String haystack = "The needle shop sells needles";
-        String regex = "(needle)";
+        String regex = "needle";
         Matcher matcher = Pattern.compile(regex).matcher(haystack);
-        assertThat(matcher.groupCount())
-                .isEqualTo(2);
+        assertThat(matcher.find())
+                .isTrue();
+        assertThat(matcher.start())
+                .as("Wrong start index of 1st match")
+                .isEqualTo(4);
+        assertThat(matcher.end())
+                .as("Wrong end index of 1st match")
+                .isEqualTo(10);
+        assertThat(matcher.find())
+                .isTrue();
+        assertThat(matcher.start())
+                .as("Wrong start index of 1st match")
+                .isEqualTo(22);
+        assertThat(matcher.end())
+                .as("Wrong end index of 1st match")
+                .isEqualTo(28);
     }
 }
