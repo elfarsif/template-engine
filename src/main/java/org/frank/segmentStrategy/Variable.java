@@ -1,6 +1,13 @@
 package org.frank.segmentStrategy;
 
 public class Variable implements Segment {
-    public Variable(String text) {
+    private String name;
+
+    public Variable(String name) {
+        this.name = name;
+    }
+
+    public boolean equals(Object other) {
+        return name.equals(((Variable) other).name);
     }
 }
