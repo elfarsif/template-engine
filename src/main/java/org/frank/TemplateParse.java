@@ -1,5 +1,7 @@
 package org.frank;
 
+import org.frank.segmentStrategy.Segment;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -47,5 +49,9 @@ public class TemplateParse {
         if (segs.isEmpty()) {
             segs.add("");
         }
+    }
+
+    public List<Segment> parseSegments(String text) {
+        return List.of();
     }
 }

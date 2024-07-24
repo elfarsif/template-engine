@@ -1,9 +1,10 @@
 package org.frank;
 
+import org.frank.utils.MissingValueException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Template {
     private String templateText;

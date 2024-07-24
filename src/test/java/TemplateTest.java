@@ -1,4 +1,4 @@
-import org.frank.MissingValueException;
+import org.frank.utils.MissingValueException;
 import org.frank.Template;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
