@@ -21,6 +21,10 @@ public class Template {
     public String evaluate() {
         TemplateParse parser = new TemplateParse();
         List<String> segments = parser.parse(templateText);
+        return concatenate(segments);
+    }
+
+    private String concatenate(List<String> segments) {
         StringBuilder result = new StringBuilder();
         for (String segment : segments) {
             append(segment, result);
